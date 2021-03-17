@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
+import axios from 'axios'
 
 function App() {
+  const [nasaData, setNasaData] = useState([])
+
+  useEffect(() => {
+    axios.get('https://api.nasa.gov/planetary/apod?api_key=1Bd6M1bcqao9GadvVh2Ur2KCceHd3JFL7GJvlI8h')
+      .then(res => {
+        // console.log(res.data);
+        setNasaData(res.data);
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }, [])
+
   return (
     <div className="App">
       <p>
